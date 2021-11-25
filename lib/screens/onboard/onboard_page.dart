@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:list/components/fading_sliding_widget.dart';
+import 'package:list/model/onboard_page_item.dart';
 import 'package:lottie/lottie.dart';
-import 'package:animated_onboarding/components/fading_sliding_widget.dart';
-import 'package:animated_onboarding/model/onboard_page_item.dart';
+
 
 class OnboardPage extends StatefulWidget {
-  final OnboardPageItem onboardPageItem;
+  final  OnboardPageItem onboardPageItem;
 
-  OnboardPage({this.onboardPageItem});
+  OnboardPage({required this.onboardPageItem});
 
   @override
   _OnboardState createState() => _OnboardState();
@@ -14,7 +15,7 @@ class OnboardPage extends StatefulWidget {
 
 class _OnboardState extends State<OnboardPage>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
+  late AnimationController _animationController;
 
   @override
   void initState() {
@@ -45,7 +46,7 @@ class _OnboardState extends State<OnboardPage>
                 ..forward()
                 ..addListener(() {
                   if (widget.onboardPageItem.animationDuration != null) {
-                    if (_animationController.lastElapsedDuration >
+                    if (_animationController.lastElapsedDuration! >
                         widget.onboardPageItem.animationDuration) {
                       _animationController.stop();
                     }

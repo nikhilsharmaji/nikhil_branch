@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:list/components/fading_sliding_widget.dart';
+import 'package:list/model/onboard_page_item.dart';
+import 'package:list/screens/home_screen.dart';
+import 'package:list/screens/onboard/onboard_page.dart';
+import 'package:list/screens/onboard/welcome_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:animated_onboarding/model/onboard_page_item.dart';
-import 'package:animated_onboarding/components/fading_sliding_widget.dart';
-import 'package:animated_onboarding/screens/onboard/welcome_page.dart';
-import 'package:animated_onboarding/screens/onboard/onboard_page.dart';
-import 'package:animated_onboarding/screens/mainscreen.dart';
 
 class Onboard extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class _OnboardState extends State<Onboard> with SingleTickerProviderStateMixin {
   List<OnboardPageItem> onboardPageItems = [
     OnboardPageItem(
       lottieAsset: 'assets/animations/video_call.json',
-      text: 'See friends stories and events going on around you',
+      text: 'See friends stories and events going on around you', animationDuration: Duration(seconds: 2),
     ),
     OnboardPageItem(
       lottieAsset: 'assets/animations/work_from_home.json',
@@ -25,22 +25,23 @@ class _OnboardState extends State<Onboard> with SingleTickerProviderStateMixin {
     OnboardPageItem(
       lottieAsset: 'assets/animations/group_working.json',
       text: 'See friends stories and events going on around you',
+        animationDuration: Duration(seconds: 2)
     ),
   ];
 
-  PageController _pageController;
+  late PageController _pageController;
 
   List<Widget> onboardItems = [];
-  double _activeIndex;
+  late double _activeIndex;
   bool onboardPage = false;
-  AnimationController _animationController;
+  late AnimationController _animationController;
 
   @override
   void initState() {
     initializePages(); //initialize pages to be shown
     _pageController = PageController();
     _pageController.addListener(() {
-      _activeIndex = _pageController.page;
+      _activeIndex = _pageController.page!;
       print("Active Index: $_activeIndex");
       if (_activeIndex >= 0.5 && onboardPage == false) {
         setState(() {
@@ -104,7 +105,7 @@ class _OnboardState extends State<Onboard> with SingleTickerProviderStateMixin {
             child: GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Mainscreen();
+                  return HomeScreen();
                 }));
               },
               child: FadingSlidingWidget(

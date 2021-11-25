@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:animated_onboarding/components/fading_sliding_widget.dart';
+import 'package:list/components/fading_sliding_widget.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -8,7 +8,7 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomeState extends State<WelcomePage>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
+  late AnimationController _animationController;
 
   @override
   void initState() {
@@ -106,7 +106,7 @@ class _WelcomeState extends State<WelcomePage>
                 animationController: _animationController,
                 interval: const Interval(0.5, 0.9),
                 child: Text(
-                  'Zoomie',
+                  'To-Do',
                   style: TextStyle(
                     color: const Color(0xFFFFFFFF),
                     fontSize: width * 0.08,
